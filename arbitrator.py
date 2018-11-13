@@ -12,5 +12,5 @@ class Arbitrator:
                 if behavior.weight > max_weight:
                     max_weight = behavior.weight
                     winning_behavior = behavior
-        print(winning_behavior)
+        
         return winning_behavior.motor_recommendations, winning_behavior.halt_request

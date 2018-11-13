@@ -42,8 +42,9 @@ class Bbcontroller:
                 self.active_behaviors.remove(behavior)
 
     def run_one_timestep(self):
-        self.update_all_sensobs()
         self.update_all_behaviors()
+        print("Active behaviors:\n", *self.active_behaviors, sep="\n")
+        print("\n")
         # Arbitrator has a bbcon pointer so the Arbitrator can fetch the
         # relavant data.
         # Returns a tuple of a behavior's motor recommendations and a halt_flag (boolean)
@@ -121,6 +122,11 @@ if __name__ == '__main__':
     bbcon.add_sensob()
     motob = Motob()
     bbcon.add_motob(motob)
+
+    print("BBController initalized")
+    print("Behaviors:\n", *bbcon.behaviors, sep="\n")
+    print("\nSensobs:\n", *bbcon.sensobs, sep="\n")
+    print("\nMotobs:\n", *bbcon.motob, sep="\n")
 
     while True:
         bbcon.run_one_timestep()
