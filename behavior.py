@@ -71,7 +71,7 @@ class FollowLine(Behavior):
 
         if highest == 0:
             self.motor_recommendations = ['R', 30]
-            self.match_degree = 1
+            self.match_degree = 0.95
 
         elif highest == 1:
             self.motor_recommendations = ['R', 15]
@@ -87,7 +87,7 @@ class FollowLine(Behavior):
 
         elif highest == 5:
             self.motor_recommendations = ['L', 30]
-            self.match_degree = 1
+            self.match_degree = 0.95
 
 
 class AvoidCollisions(Behavior):
@@ -193,6 +193,9 @@ class DoCircles(Behavior):
         return None
 
     def sense_and_act(self):
+        self.sensob[0].update()
+        self.sensob[1].update()
+
         dir = random.choice(['F', 'B', 'L', 'R'])
         self.motor_recommendations = [dir, 10]
 
@@ -200,3 +203,5 @@ class DoCircles(Behavior):
             self.match_degree = 0
         else:
             self.match_degree = 1
+
+
